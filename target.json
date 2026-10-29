@@ -1,0 +1,9 @@
+{
+  "application_repository": "https://github.com/Khiemnh158/worksphere-app",
+  "application_commit": "98ac167fcc63952eba0bcf45057117d98034c7a4",
+  "upstream_commit": "8292d13b5330279c6a3d4ab007eebbff9be4d894",
+  "baseline_tag": "baseline-2026-10-29",
+  "status": "baseline-with-known-open-findings",
+  "image_digest": null,
+  "image_status": "NOT_BUILT"
+}

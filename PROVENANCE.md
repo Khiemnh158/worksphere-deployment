@@ -1,0 +1,1 @@
+Nguồn ứng dụng gốc: https://github.com/c06-prog/WorkSphere tại `8292d13b5330279c6a3d4ab007eebbff9be4d894`. Snapshot app của nhóm: https://github.com/Khiemnh158/worksphere-app/tree/98ac167fcc63952eba0bcf45057117d98034c7a4. Không copy backend vào repository này. Tài liệu nền ngày 29/10/2026; mục TODO chưa được triển khai.
