@@ -18,4 +18,4 @@
 - [Việc phải làm](TODO.md), [trạng thái](STATUS.md), [quyển ảnh cần thu](evidence/README.md)
 - [Version pin](versions.env), [target app](target.json)
 
-App commit khởi đầu `dfea1d9b6fc0abdc764d311dbefbcccbf8b9cadd`; security commit `ae192b67314dafdf823cbf31dad576632f420300`. Chưa có image digest. Thay pin sau khi app thực sự sửa/test; không dùng main/latest làm bằng chứng nghiệm thu.
+App commit khởi đầu `258ab9143e3d056f919c7b4abf1ea224f727af21`; security commit `63c5bd7f7398b5472110c962de9846d60270161e`. Chưa có image digest. Thay pin sau khi app thực sự sửa/test; không dùng main/latest làm bằng chứng nghiệm thu.
