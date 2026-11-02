@@ -2,7 +2,7 @@
 
 ```mermaid
 flowchart TD
-  A[Checkout app + security commit đã ghim] --> B[Build / unit / integration tests]
+  A[Checkout app commit đã ghim] --> B[Build / unit / integration tests]
   B --> C[Sonar analysis + security scan]
   C --> D{Quality gate đạt?}
   D -- Không --> E[Dừng, không deploy]
@@ -17,7 +17,7 @@ flowchart TD
 ## Ownership
 - Dockerfiles build ứng dụng sẽ ở repo app cạnh backend/web sau khi thực hiện.
 - Repo này giữ Compose, Jenkinsfiles, monitoring configs và scripts/runbook.
-- Jenkins checkout app tại APP_COMMIT vào workspace/app, dùng Dockerfile/context đúng version. Security scan runner cũng phải ghim SECURITY_COMMIT.
+- Jenkins checkout app tại APP_COMMIT vào workspace/app, dùng Dockerfile/context đúng version. Bộ kiểm tra chất lượng/an toàn chạy theo source app đã ghim, không tham chiếu repo môn khác.
 - Không có web chạy thật ở baseline; pipeline không được giả định đã có thư mục web/build output.
 
 ## Mô hình chạy dự kiến

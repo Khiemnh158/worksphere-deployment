@@ -18,4 +18,6 @@
 - [Việc phải làm](TODO.md), [trạng thái](STATUS.md), [quyển ảnh cần thu](evidence/README.md)
 - [Version pin](versions.env), [target app](target.json)
 
-App commit khởi đầu `258ab9143e3d056f919c7b4abf1ea224f727af21`; security commit `63c5bd7f7398b5472110c962de9846d60270161e`. Chưa có image digest. Thay pin sau khi app thực sự sửa/test; không dùng main/latest làm bằng chứng nghiệm thu.
+App commit khởi đầu `258ab9143e3d056f919c7b4abf1ea224f727af21`. Chưa có image digest. Thay pin sau khi app thực sự sửa/test; không dùng main/latest làm bằng chứng nghiệm thu.
+
+Cập nhật phạm vi 02/11/2026: An toàn thông tin thi trắc nghiệm, không có bài tập lớn; pipeline chỉ tham chiếu source app, không phụ thuộc repository chuyên đề bảo mật. Sonar/kiểm tra an toàn theo yêu cầu chất lượng vẫn thuộc pipeline triển khai.
