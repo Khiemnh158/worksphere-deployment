@@ -18,7 +18,7 @@ flowchart TD
 - Dockerfiles build ứng dụng sẽ ở repo app cạnh backend/web sau khi thực hiện.
 - Repo này giữ Compose, Jenkinsfiles, monitoring configs và scripts/runbook.
 - Jenkins checkout app tại APP_COMMIT vào workspace/app, dùng Dockerfile/context đúng version. Bộ kiểm tra chất lượng/an toàn chạy theo source app đã ghim, không tham chiếu repo môn khác.
-- Không có web chạy thật ở baseline; pipeline không được giả định đã có thư mục web/build output.
+- Mốc MVP 02/11 đã có web JavaScript chạy từ source và Android dùng chung API. Chưa có web/build output; pipeline phải dùng đúng cấu trúc source và ghim commit, không giả định là dự án SPA có bước build sẵn.
 
 ## Mô hình chạy dự kiến
 Web/mobile → reverse proxy/API → PostgreSQL + file volume. Prometheus scrape API trong network nội bộ; Grafana đọc Prometheus. Jenkins và Sonar trên máy cá nhân/node phù hợp, metrics/admin UI không tự mở public.
