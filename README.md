@@ -2,7 +2,9 @@
 
 Đóng gói và triển khai [worksphere-app](https://github.com/Khiemnh158/worksphere-app) theo đúng commit, không copy backend vào repo này.
 
-**Hiện trạng 02/11/2026: đã có tài liệu yêu cầu/kế hoạch và version pin của MVP app đã kiểm chứng local. Chưa dựng Jenkins, Docker/Compose, Sonar hay Prometheus/Grafana trong repo này.** Không có cấu hình giả được trình bày như phần mềm đã chạy.
+**Hiện trạng 05/11/2026: đã chuẩn bị kế hoạch P0–P6, checklist và ghim MVP app. Chưa dựng Jenkins, Docker/Compose, Sonar hay Prometheus/Grafana trong repo này.** Không có cấu hình giả được trình bày như phần mềm đã chạy.
+
+Khi bắt đầu: Docker/fixture QR/kiểm thử JDK 21 → Compose độc lập → Jenkins/Sonar → monitoring → nghiệm thu/báo cáo. [Kế hoạch chính](docs/PIPELINE_PLAN.md) ghi điều kiện hoàn thành; [TODO](TODO.md) theo dõi tiến độ thật. SSH public là bonus sau local.
 
 ## Bắt buộc theo mẫu người dùng cung cấp
 - Jenkins cài/cấu hình trên máy tính cá nhân.
@@ -14,7 +16,7 @@
 
 ## Tài liệu
 - [Phạm vi và ma trận tiêu chí](docs/COURSE_SCOPE.md)
-- [Pipeline/mô hình dự kiến](docs/PIPELINE_PLAN.md)
+- [Kế hoạch P0–P6, pipeline và mô hình local](docs/PIPELINE_PLAN.md)
 - [Việc phải làm](TODO.md), [trạng thái](STATUS.md), [quyển ảnh cần thu](evidence/README.md)
 - [Version pin](versions.env), [target app](target.json)
 
