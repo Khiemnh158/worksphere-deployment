@@ -4,7 +4,11 @@
   "upstream_commit": "8292d13b5330279c6a3d4ab007eebbff9be4d894",
   "baseline_tag": "coursework-mvp-2026-11-02",
   "baseline_commit": "8f342548fbdab566e4e930ae2df6365480fd1c90",
-  "status": "local-deployment-candidate",
+  "status": "local-compose-smoke-verified-ci-acceptance-pending",
   "image_digest": null,
-  "image_status": "PREVIEW_BUILT_PINNED_BUILD_PENDING"
+  "image_status": "LOCAL_BUILT_AND_SMOKE_VERIFIED",
+  "local_image_ids": {
+    "api": "sha256:fc54e5bde97f8fc86c6e2625f0d3de779d70ce825ad2f087905e8c29196fa6c2",
+    "web": "sha256:8f401aefbf85cd1d45653b7912d6517eadd54850860056c3aabb60a6cfe47878"
+  }
 }

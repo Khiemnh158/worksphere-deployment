@@ -1,4 +1,6 @@
-# Quyển minh chứng phải tự thực hiện (chưa có ảnh)
+# Minh chứng triển khai
+
+Xem [kết quả local 09/11/2026](LOCAL_2026-11-09.md). Các ảnh còn cần thu để gộp vào báo cáo:
 
 1. Jenkins máy cá nhân, cấu hình node/tools và build ID/SHA.
 2. Sonar cùng project/commit, quality gate và Jenkins nhận kết quả; build lỗi có chủ ý chặn deploy.
