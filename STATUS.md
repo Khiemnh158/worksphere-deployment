@@ -1,5 +1,14 @@
 # Hiện trạng
 
+## Kết quả nghiệm thu local ngày 09/11/2026
+
+- Docker Desktop đã khởi động lại. Chạy Jenkins và SonarQube theo từng chặng để kiểm soát bộ nhớ.
+- Jenkins #5 từ checkout sạch tại `dd20a3d`: backend 407/407, web 8/8, Sonar gate OK, Docker Compose healthy, smoke nghiệp vụ và tệp đạt.
+- Jenkins #2 chặn deploy khi test lỗi. Jenkins #6 có 407 test đạt nhưng project kiểm chứng trả gate ERROR, stage deploy bị bỏ qua. Gate của project triển khai giữ chính sách bình thường.
+- Prometheus thấy UP → DOWN → UP. Grafana đọc request, lỗi HTTP, độ trễ và JVM. Yêu cầu và tệp còn nguyên sau restart.
+- Backup/restore và thử chuyển qua lại hai image trên DB khôi phục cổng 18211 đều đạt smoke. Hai image dùng cùng schema.
+- [Minh chứng và SHA](evidence/LOCAL_2026-11-09.md). SSH public là phần cộng điểm chờ máy chủ.
+
 ## Triển khai ngày 09/11/2026
 
 - P0: JDK 21 build đạt, 407 backend tests đạt, 0 fail/error/skip. Nhóm PostgreSQL chạy trên DB thử riêng, bao gồm ca QR đã sửa đồng hồ. Web 8/8 đạt.
