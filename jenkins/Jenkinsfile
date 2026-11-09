@@ -58,18 +58,15 @@ pipeline {
                     def project = params.FAIL_GATE_DEMO ? 'worksphere-rejection-check' : 'worksphere-deployment'
                     withEnv(["SONAR_PROJECT=${project}"]) {
                         withSonarQubeEnv('WorkSphere SonarQube') {
+                            sh 'cp jenkins/sonar-reactor.xml app/sonar-reactor.xml'
                             dir('app') {
                                 sh '''
                                     set +x
-                                    ./backend/mvnw -B -f backend/pom.xml \
+                                    MAVEN_OPTS="-Xmx640m -XX:ActiveProcessorCount=2" \
+                                    ./backend/mvnw -B -f sonar-reactor.xml \
                                         org.sonarsource.scanner.maven:sonar-maven-plugin:5.5.0.6356:sonar \
                                         -Dsonar.projectKey="$SONAR_PROJECT" \
-                                        -Dsonar.projectBaseDir="$PWD" \
-                                        -Dsonar.sources=backend/src/main/java,web \
-                                        -Dsonar.tests=backend/src/test/java \
-                                        -Dsonar.java.binaries=backend/target/classes \
-                                        -Dsonar.coverage.jacoco.xmlReportPaths=backend/target/site/jacoco/jacoco.xml \
-                                        -Dsonar.exclusions='web/screenshots/**' \
+                                        -Dsonar.coverage.jacoco.xmlReportPaths="$PWD/backend/target/site/jacoco/jacoco.xml" \
                                         -Dsonar.scm.revision="$(git rev-parse HEAD)" \
                                         -Dsonar.scanner.skipJreProvisioning=true
                                 '''
