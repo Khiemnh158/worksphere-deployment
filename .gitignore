@@ -18,3 +18,5 @@ work/
 data/
 uploads/
 *.log
+/app/
+/artifacts/

@@ -1,9 +1,10 @@
 {
   "application_repository": "https://github.com/Khiemnh158/worksphere-app",
-  "application_commit": "8f342548fbdab566e4e930ae2df6365480fd1c90",
+  "application_commit": "4273f1ed907eb49ae0023ab1cacff7c25de8a691",
   "upstream_commit": "8292d13b5330279c6a3d4ab007eebbff9be4d894",
   "baseline_tag": "coursework-mvp-2026-11-02",
-  "status": "coursework-mvp-verified-local-not-production",
+  "baseline_commit": "8f342548fbdab566e4e930ae2df6365480fd1c90",
+  "status": "local-deployment-candidate",
   "image_digest": null,
-  "image_status": "NOT_BUILT"
+  "image_status": "PREVIEW_BUILT_PINNED_BUILD_PENDING"
 }

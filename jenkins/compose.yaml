@@ -1,0 +1,88 @@
+name: worksphere-deployment
+
+services:
+  jenkins:
+    image: worksphere-jenkins:2.580.2
+    build: controller
+    environment:
+      JAVA_OPTS: "-Djenkins.install.runSetupWizard=false -Xmx512m"
+      CASC_JENKINS_CONFIG: /usr/share/jenkins/ref/jenkins.yaml
+      DEPLOYMENT_BRANCH: ${DEPLOYMENT_BRANCH:-main}
+      JENKINS_LOCAL_PASSWORD: ${JENKINS_LOCAL_PASSWORD:-}
+      SONAR_TOKEN: ${SONAR_TOKEN:-}
+      SONAR_WEBHOOK_SECRET: ${SONAR_WEBHOOK_SECRET:-}
+      DEPLOY_DB_PASSWORD: ${DEPLOY_DB_PASSWORD:-}
+      DEPLOY_JWT_SECRET: ${DEPLOY_JWT_SECRET:-}
+      DEPLOY_DEMO_PASSWORD: ${DEPLOY_DEMO_PASSWORD:-}
+    ports:
+      - "127.0.0.1:18081:8080"
+    volumes:
+      - jenkins-home:/var/jenkins_home
+    networks: [ci]
+
+  agent:
+    image: worksphere-jenkins-agent:jdk21
+    build: agent
+    environment:
+      JENKINS_URL: http://jenkins:8080/
+      JENKINS_AGENT_NAME: linux-docker
+      JENKINS_AGENT_WORKDIR: /home/jenkins/agent
+      JENKINS_WEB_SOCKET: "true"
+      JENKINS_SECRET: ${JENKINS_AGENT_SECRET:-}
+      TESTCONTAINERS_HOST_OVERRIDE: host.docker.internal
+      TESTCONTAINERS_RYUK_CONTAINER_IMAGE: testcontainers/ryuk:0.14.0
+      WORKSPHERE_CI_NETWORK: worksphere-deployment_ci
+      JAVA_OPTS: "-Xmx256m"
+    group_add:
+      - "${DOCKER_SOCKET_GID:-0}"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - agent-home:/home/jenkins/agent
+      - maven-home:/home/jenkins/.m2
+    networks: [ci, app]
+
+  sonarqube:
+    image: sonarqube:26.8.0.126808-community@sha256:9026624a61cd25542a402a9e7213dd7dbb39724ac9597e331e6b85362558c079
+    environment:
+      SONAR_JDBC_URL: jdbc:postgresql://sonar-db:5432/sonar
+      SONAR_JDBC_USERNAME: sonar
+      SONAR_JDBC_PASSWORD: ${SONAR_DB_PASSWORD:-}
+      SONAR_WEB_JAVAOPTS: "-Xms128m -Xmx384m"
+      SONAR_CE_JAVAOPTS: "-Xms128m -Xmx512m"
+      SONAR_SEARCH_JAVAOPTS: "-Xms512m -Xmx512m -XX:MaxDirectMemorySize=256m"
+    ports:
+      - "127.0.0.1:19000:9000"
+    volumes:
+      - sonar-data:/opt/sonarqube/data
+      - sonar-extensions:/opt/sonarqube/extensions
+    depends_on:
+      sonar-db:
+        condition: service_healthy
+    networks: [ci]
+
+  sonar-db:
+    image: postgres:16-alpine@sha256:721873c34ceb9f8d8fc265984940dc982404c105f19ad51be9fdc5970a6080ea
+    environment:
+      POSTGRES_DB: sonar
+      POSTGRES_USER: sonar
+      POSTGRES_PASSWORD: ${SONAR_DB_PASSWORD:-}
+    volumes:
+      - sonar-database:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-h", "127.0.0.1", "-U", "sonar", "-d", "sonar"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    networks: [ci]
+
+networks:
+  ci:
+  app:
+
+volumes:
+  jenkins-home:
+  agent-home:
+  maven-home:
+  sonar-data:
+  sonar-extensions:
+  sonar-database:

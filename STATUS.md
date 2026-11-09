@@ -1,5 +1,13 @@
 # Hiện trạng
 
+## Triển khai ngày 09/11/2026
+
+- P0: JDK 21 build đạt, 407 backend tests đạt, 0 fail/error/skip. Nhóm PostgreSQL chạy trên DB thử riêng, bao gồm ca QR đã sửa đồng hồ. Web 8/8 đạt.
+- P1: image preview API/web và Compose chạy với PostgreSQL riêng. Smoke qua Nginx đã xác nhận login/logout, chặn sai quyền, gửi yêu cầu kèm tệp, phân công, xử lý, đóng và tải lại tệp sau khi tái tạo API.
+- P2/P3: Jenkins local, agent Linux và SonarQube đã lên. Cấu hình hai project Sonar và webhook đã tạo. Cần nghiệm thu Jenkinsfile từ Git với commit mới trước khi ghi pipeline đạt.
+- P4: Prometheus đã scrape được API qua management port nội bộ, Grafana đã chạy. Cần kiểm tra panel có dữ liệu và minh chứng DOWN → UP.
+- Pin ứng viên triển khai là `4273f1ed907eb49ae0023ab1cacff7c25de8a691`. Ứng viên gồm bản sửa test QR, image và profile Docker riêng, metrics. Kết quả 407 ở P0 có bản sửa test QR, lần chạy Jenkins sẽ kiểm tra lại đầy đủ pin mới. Tag MVP là mốc lịch sử.
+
 ## Chuẩn bị bắt đầu — 05/11/2026
 
 Đã tìm repo public, đọc lại mẫu gốc và chuẩn bị [kế hoạch P0–P6](docs/PIPELINE_PLAN.md) cùng checklist. Lượt này chỉ khảo sát/cập nhật tài liệu, **chưa cài hoặc chạy stack triển khai**.

@@ -1,0 +1,59 @@
+jenkins:
+  numExecutors: 0
+  securityRealm:
+    local:
+      allowsSignup: false
+      users:
+        - id: coursework
+          password: ${JENKINS_LOCAL_PASSWORD}
+  authorizationStrategy:
+    loggedInUsersCanDoAnything:
+      allowAnonymousRead: false
+  nodes:
+    - permanent:
+        name: linux-docker
+        labelString: linux-docker
+        remoteFS: /home/jenkins/agent
+        numExecutors: 1
+        mode: EXCLUSIVE
+        launcher:
+          inbound:
+            workDirSettings:
+              disabled: false
+              internalDir: remoting
+              failIfWorkDirIsMissing: false
+
+credentials:
+  system:
+    domainCredentials:
+      - credentials:
+          - string:
+              id: sonar-token
+              secret: ${SONAR_TOKEN}
+              scope: GLOBAL
+          - string:
+              id: sonar-webhook
+              secret: ${SONAR_WEBHOOK_SECRET}
+              scope: GLOBAL
+          - string:
+              id: deploy-db
+              secret: ${DEPLOY_DB_PASSWORD}
+              scope: GLOBAL
+          - string:
+              id: deploy-jwt
+              secret: ${DEPLOY_JWT_SECRET}
+              scope: GLOBAL
+          - string:
+              id: deploy-demo
+              secret: ${DEPLOY_DEMO_PASSWORD}
+              scope: GLOBAL
+
+unclassified:
+  location:
+    url: http://127.0.0.1:18081/
+  sonarGlobalConfiguration:
+    buildWrapperEnabled: true
+    installations:
+      - name: WorkSphere SonarQube
+        serverUrl: http://sonarqube:9000
+        credentialsId: sonar-token

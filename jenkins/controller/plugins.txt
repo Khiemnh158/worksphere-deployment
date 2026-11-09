@@ -1,0 +1,7 @@
+workflow-aggregator:608.v67378e9d3db_1
+git:5.11.0
+configuration-as-code:2147.v8a_8d38668c72
+sonar:2.19.0
+junit:1458.v38661c0638e2
+credentials-binding:728.v902a_273b_8947
+pipeline-stage-view:2.41
