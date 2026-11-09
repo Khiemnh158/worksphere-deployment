@@ -27,7 +27,8 @@ fi
 export WORKSPHERE_AUTHZ_TEST_JDBC_URL="jdbc:postgresql://$test_db:5432/worksphere_test"
 export WORKSPHERE_AUTHZ_TEST_DB_USER=postgres
 export WORKSPHERE_AUTHZ_TEST_DB_PASSWORD="$POSTGRES_PASSWORD"
-export JAVA_TOOL_OPTIONS="-Xmx1024m -XX:ActiveProcessorCount=4"
+export JAVA_TOOL_OPTIONS="-Xmx768m -XX:ActiveProcessorCount=2"
+export MAVEN_OPTS="-Xmx512m"
 cd app/backend
 ./mvnw -B clean \
     org.jacoco:jacoco-maven-plugin:0.8.14:prepare-agent \

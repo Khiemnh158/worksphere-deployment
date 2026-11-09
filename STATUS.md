@@ -8,6 +8,10 @@
 - P4: Prometheus đã scrape được API qua management port nội bộ, Grafana đã chạy. Cần kiểm tra panel có dữ liệu và minh chứng DOWN → UP.
 - Pin ứng viên triển khai là `4273f1ed907eb49ae0023ab1cacff7c25de8a691`. Ứng viên gồm bản sửa test QR, image và profile Docker riêng, metrics. Kết quả 407 ở P0 có bản sửa test QR, lần chạy Jenkins sẽ kiểm tra lại đầy đủ pin mới. Tag MVP là mốc lịch sử.
 
+Jenkins #2 cố ý làm test thất bại và đã bỏ qua deploy. #3 đã checkout đúng SHA, chạy web 8/8 và kết nối Testcontainers qua Docker Linux. Máy thiếu bộ nhớ khi đồng thời chạy Jenkins, hai stack app và các dịch vụ giám sát. Cần khôi phục Docker Desktop và chạy từng chặng để có kết quả Jenkins đầy đủ.
+
+Backup PostgreSQL và uploads đã phục hồi trong project riêng trên cổng 18211. Smoke tải lại đúng yêu cầu CLOSED và từng byte của tệp. Đã thu target UP, DOWN và các số liệu thật qua datasource Grafana. Ca khởi động lại và quay lui cần hoàn tất khi Docker ổn định.
+
 ## Chuẩn bị bắt đầu — 05/11/2026
 
 Đã tìm repo public, đọc lại mẫu gốc và chuẩn bị [kế hoạch P0–P6](docs/PIPELINE_PLAN.md) cùng checklist. Lượt này chỉ khảo sát/cập nhật tài liệu, **chưa cài hoặc chạy stack triển khai**.

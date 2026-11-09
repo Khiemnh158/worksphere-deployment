@@ -1,6 +1,6 @@
 # Kế hoạch bắt đầu môn Triển khai phần mềm
 
-Cập nhật 05/11/2026. **Chỉ là kế hoạch; chưa triển khai stack.** Đây là kế hoạch chính; `TODO.md` theo dõi công việc, `STATUS.md` ghi kết quả thực tế và `COURSE_SCOPE.md` đối chiếu mẫu giảng viên. Không tạo thêm nhiều bản kế hoạch trùng nhau.
+Bản kế hoạch lập ngày 05/11/2026. Dùng [runbook](../runbooks/LOCAL.md) cho lệnh hiện hành, [TODO](../TODO.md) cho việc còn lại và [STATUS](../STATUS.md) cho kết quả thực tế. Các khảo sát và pin trong kế hoạch ghi lại đầu vào ban đầu.
 
 ## Phạm vi và đầu vào
 

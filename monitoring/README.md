@@ -1,3 +1,3 @@
 # Prometheus config và dashboard Grafana
 
-TODO - chưa triển khai. Đọc docs/PIPELINE_PLAN.md và TODO.md; chỉ thêm cấu hình/script thực thi khi bắt đầu công việc và kiểm tra kết quả thật.
+[compose.yaml](compose.yaml) build hai image có cấu hình sẵn. Prometheus scrape `api:9091/actuator/prometheus`. Grafana đọc Prometheus và nạp dashboard WorkSphere API. Xem [runbook](../runbooks/LOCAL.md#prometheus-và-grafana).

@@ -24,6 +24,7 @@ services:
         org.opencontainers.image.revision: ${APP_COMMIT:?Load versions.env before running Compose}
     environment:
       SPRING_PROFILES_ACTIVE: deployment-demo
+      JAVA_TOOL_OPTIONS: "-Xms96m -Xmx384m -XX:ActiveProcessorCount=2"
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/worksphere_deployment
       SPRING_DATASOURCE_USERNAME: worksphere
       SPRING_DATASOURCE_PASSWORD: ${DEPLOY_DB_PASSWORD:?Set DEPLOY_DB_PASSWORD in the local env file}

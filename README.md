@@ -2,9 +2,9 @@
 
 Đóng gói và triển khai [worksphere-app](https://github.com/Khiemnh158/worksphere-app) theo đúng commit, không copy backend vào repo này.
 
-**Hiện trạng 05/11/2026: đã chuẩn bị kế hoạch P0–P6, checklist và ghim MVP app. Chưa dựng Jenkins, Docker/Compose, Sonar hay Prometheus/Grafana trong repo này.** Không có cấu hình giả được trình bày như phần mềm đã chạy.
+Docker Compose chạy WorkSphere trên cổng 18210. Jenkins local, SonarQube, Prometheus và Grafana có cấu hình riêng trong repo này. Đọc [hướng dẫn chạy và bàn giao](runbooks/LOCAL.md), [kết quả thực tế](STATUS.md) và [checklist](TODO.md).
 
-Khi bắt đầu: Docker/fixture QR/kiểm thử JDK 21 → Compose độc lập → Jenkins/Sonar → monitoring → nghiệm thu/báo cáo. [Kế hoạch chính](docs/PIPELINE_PLAN.md) ghi điều kiện hoàn thành; [TODO](TODO.md) theo dõi tiến độ thật. SSH public là bonus sau local.
+Docker/kiểm thử JDK 21 → Compose → Jenkins/Sonar → giám sát → nghiệm thu. [Kế hoạch](docs/PIPELINE_PLAN.md) ghi tiêu chí qua từng chặng. SSH public là bonus sau local.
 
 ## Bắt buộc theo mẫu người dùng cung cấp
 - Jenkins cài/cấu hình trên máy tính cá nhân.
@@ -20,6 +20,6 @@ Khi bắt đầu: Docker/fixture QR/kiểm thử JDK 21 → Compose độc lập
 - [Việc phải làm](TODO.md), [trạng thái](STATUS.md), [quyển ảnh cần thu](evidence/README.md)
 - [Version pin](versions.env), [target app](target.json)
 
-App commit được ghim `8f342548fbdab566e4e930ae2df6365480fd1c90`, tag `coursework-mvp-2026-11-02`. [Bằng chứng app](https://github.com/Khiemnh158/worksphere-app/blob/coursework-mvp-2026-11-02/reports/COURSEWORK_ACCEPTANCE_2026-11-02.md): JDK21, 407 backend tests, 852 mobile tests, 8 web tests; OPPO và clone sạch cùng máy đã nghiệm thu trong phạm vi mô tả. Chưa có image digest hoặc pipeline; không dùng main/latest hay kết quả local để nhận đã đạt môn triển khai.
+Pin triển khai đọc từ `versions.env`. Tag `coursework-mvp-2026-11-02` ghi nhận mốc môn Lập trình nâng cao. Kết quả CI, Compose và giám sát của môn này được ghi riêng trong [STATUS](STATUS.md). [Nghiệm thu app MVP](https://github.com/Khiemnh158/worksphere-app/blob/coursework-mvp-2026-11-02/reports/COURSEWORK_ACCEPTANCE_2026-11-02.md).
 
 Cập nhật phạm vi 02/11/2026: An toàn thông tin thi trắc nghiệm, không có bài tập lớn; pipeline chỉ tham chiếu source app, không phụ thuộc repository chuyên đề bảo mật. Sonar/kiểm tra an toàn theo yêu cầu chất lượng vẫn thuộc pipeline triển khai.

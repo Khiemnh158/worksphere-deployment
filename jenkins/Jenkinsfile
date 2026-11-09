@@ -46,6 +46,14 @@ pipeline {
         }
         stage('SonarQube analysis') {
             steps {
+                timeout(time: 4, unit: 'MINUTES') {
+                    sh '''
+                        until curl --silent --fail --max-time 5 http://sonarqube:9000/api/system/status |
+                            grep -Eq '"status"[[:space:]]*:[[:space:]]*"UP"'; do
+                            sleep 5
+                        done
+                    '''
+                }
                 script {
                     def project = params.FAIL_GATE_DEMO ? 'worksphere-rejection-check' : 'worksphere-deployment'
                     withEnv(["SONAR_PROJECT=${project}"]) {
