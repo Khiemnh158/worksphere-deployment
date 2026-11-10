@@ -3,6 +3,7 @@
 ## Chuẩn bị trình bày ngày 11/11/2026
 
 - [Báo cáo tiến độ](reports/README.md) tổng hợp kết quả nghiệm thu ngày 09/11, kịch bản demo và câu hỏi cho giảng viên. Đây là cập nhật tài liệu dựa trên các lượt chạy đã lưu.
+- Ngày 10/11, bổ sung hai sơ đồ tại mục 2 và thay sáu ảnh minh chứng sau khi bật lại WorkSphere, Jenkins, SonarQube, Prometheus và Grafana. Smoke mới đạt, yêu cầu đã đóng và tệp đính kèm khớp. Ảnh Jenkins #5 và #6 mở lại kết quả ngày 09/11.
 - [TODO](TODO.md) ghi các việc còn lại trước khi trình bày và nộp bản cuối. SSH lên máy chủ công khai vẫn chờ điều kiện thực hiện phần cộng điểm.
 
 ## Kết quả nghiệm thu local ngày 09/11/2026

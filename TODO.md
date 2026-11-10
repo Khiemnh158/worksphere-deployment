@@ -11,6 +11,7 @@ Cập nhật ngày 10/11/2026. Bản triển khai local đã được nghiệm t
 - [x] P4. Prometheus ghi nhận UP → DOWN → UP. Grafana đọc số yêu cầu, lỗi HTTP, độ trễ và bộ nhớ JVM.
 - [x] P5. Khôi phục PostgreSQL và tệp lên môi trường thử cổng 18211. Kiểm thử nhanh đạt với cả hai image cùng schema khi chuyển phiên bản qua lại.
 - [x] Chuẩn bị báo cáo theo mẫu cho buổi trình bày ngày 11/11/2026, gồm kết quả, kịch bản demo, câu hỏi cho giảng viên và phụ lục minh chứng.
+- [x] Bổ sung sơ đồ kiến trúc Docker và luồng CI/CD theo góp ý. Bật lại các dịch vụ, chạy lại smoke và chụp sáu ảnh minh chứng ngày 10/11.
 
 ## Trước và sau buổi trình bày
 
