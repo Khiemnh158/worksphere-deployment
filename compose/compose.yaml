@@ -1,0 +1,75 @@
+name: worksphere-deployment
+
+services:
+  postgres:
+    image: postgres:15-alpine@sha256:54e0dd8e8cddcdbb9156c2486eed5a43eccb7214d7c6828097d41ce049fb3984
+    environment:
+      POSTGRES_DB: worksphere_deployment
+      POSTGRES_USER: worksphere
+      POSTGRES_PASSWORD: ${DEPLOY_DB_PASSWORD:?Set DEPLOY_DB_PASSWORD in the local env file}
+    volumes:
+      - database:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -U worksphere -d worksphere_deployment"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    networks: [app]
+
+  api:
+    image: worksphere-api:${APP_COMMIT:?Load versions.env before running Compose}
+    build:
+      context: ${APP_SOURCE_DIR:-../app}/backend
+      labels:
+        org.opencontainers.image.revision: ${APP_COMMIT:?Load versions.env before running Compose}
+    environment:
+      SPRING_PROFILES_ACTIVE: deployment-demo
+      JAVA_TOOL_OPTIONS: "-Xms96m -Xmx384m -XX:ActiveProcessorCount=2"
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/worksphere_deployment
+      SPRING_DATASOURCE_USERNAME: worksphere
+      SPRING_DATASOURCE_PASSWORD: ${DEPLOY_DB_PASSWORD:?Set DEPLOY_DB_PASSWORD in the local env file}
+      WORKSPHERE_JWT_SECRET: ${DEPLOY_JWT_SECRET:?Set DEPLOY_JWT_SECRET in the local env file}
+      WORKSPHERE_WEB_DEMO_PASSWORD: ${DEPLOY_DEMO_PASSWORD:?Set DEPLOY_DEMO_PASSWORD in the local env file}
+      WORKSPHERE_WEB_DEMO_ENABLED: "true"
+      WORKSPHERE_STORAGE_PATH: /var/lib/worksphere/uploads
+      WORKSPHERE_MAIL_LOCAL_ENABLED: "true"
+      WORKSPHERE_MAIL_LOCAL_PATH: /var/lib/worksphere/mail
+    volumes:
+      - uploads:/var/lib/worksphere/uploads
+      - mailbox:/var/lib/worksphere/mail
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:9091/actuator/health/readiness"]
+      interval: 5s
+      timeout: 3s
+      start_period: 40s
+      retries: 24
+    networks: [app]
+
+  web:
+    image: worksphere-web:${APP_COMMIT:?Load versions.env before running Compose}
+    build:
+      context: ${APP_SOURCE_DIR:-../app}/web
+      labels:
+        org.opencontainers.image.revision: ${APP_COMMIT:?Load versions.env before running Compose}
+    ports:
+      - "127.0.0.1:${DEPLOY_WEB_PORT:-18210}:8080"
+    depends_on:
+      api:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:8080/"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+    networks: [app]
+
+networks:
+  app:
+
+volumes:
+  database:
+  uploads:
+  mailbox:

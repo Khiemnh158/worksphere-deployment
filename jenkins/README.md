@@ -1,3 +1,3 @@
-# Jenkinsfile.local/public
+# Jenkins và SonarQube local
 
-TODO - chưa triển khai. Đọc docs/PIPELINE_PLAN.md và TODO.md; chỉ thêm cấu hình/script thực thi khi bắt đầu công việc và kiểm tra kết quả thật.
+[Jenkinsfile](Jenkinsfile) checkout pin, chạy kiểm thử, chờ quality gate, build image, triển khai Compose và smoke. [compose.yaml](compose.yaml) cung cấp controller, agent, SonarQube và DB Sonar. Xem [runbook](../runbooks/LOCAL.md#jenkins-và-sonarqube).

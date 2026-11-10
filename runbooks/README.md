@@ -1,3 +1,3 @@
 # Hướng dẫn tái lập đã thử
 
-TODO - chưa triển khai. Đọc docs/PIPELINE_PLAN.md và TODO.md; chỉ thêm cấu hình/script thực thi khi bắt đầu công việc và kiểm tra kết quả thật.
+Đọc [LOCAL.md](LOCAL.md) để cài và chạy Compose, Jenkins/SonarQube, monitoring, smoke, sao lưu và khôi phục.

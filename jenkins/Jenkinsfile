@@ -1,0 +1,125 @@
+pipeline {
+    agent { label 'linux-docker' }
+    options {
+        disableConcurrentBuilds()
+        skipDefaultCheckout()
+        buildDiscarder(logRotator(numToKeepStr: '12'))
+        timeout(time: 50, unit: 'MINUTES')
+    }
+    parameters {
+        booleanParam(name: 'FAIL_TEST_DEMO', defaultValue: false,
+            description: 'Run an intentionally failing test to demonstrate that deployment is blocked.')
+        booleanParam(name: 'FAIL_GATE_DEMO', defaultValue: false,
+            description: 'Analyze the pinned app against the separate rejection gate.')
+    }
+    stages {
+        stage('Checkout pinned source') {
+            steps {
+                deleteDir()
+                checkout scm
+                sh '''
+                    set -eu
+                    . ./versions.env
+                    git init app
+                    git -C app fetch --no-tags "$APP_REPOSITORY" "$APP_COMMIT"
+                    git -C app checkout --detach FETCH_HEAD
+                    test "$(git -C app rev-parse HEAD)" = "$APP_COMMIT"
+                    java -version
+                    node --version
+                    docker compose version
+                '''
+            }
+        }
+        stage('Tests') {
+            steps {
+                script {
+                    if (params.FAIL_TEST_DEMO) {
+                        sh '''node -e 'require("node:test")("intentional rejection", () => { throw new Error("Acceptance test failure") })' '''
+                    }
+                }
+                sh '''
+                    set -eu
+                    (cd app && node --experimental-vm-modules --test scripts/test-web-session.mjs scripts/test-web-punch-history.mjs)
+                    bash scripts/ci-test-backend.sh
+                '''
+            }
+        }
+        stage('SonarQube analysis') {
+            steps {
+                timeout(time: 4, unit: 'MINUTES') {
+                    sh '''
+                        until curl --silent --fail --max-time 5 http://sonarqube:9000/api/system/status |
+                            grep -Eq '"status"[[:space:]]*:[[:space:]]*"UP"'; do
+                            sleep 5
+                        done
+                    '''
+                }
+                script {
+                    def project = params.FAIL_GATE_DEMO ? 'worksphere-rejection-check' : 'worksphere-deployment'
+                    withEnv(["SONAR_PROJECT=${project}"]) {
+                        withSonarQubeEnv('WorkSphere SonarQube') {
+                            sh 'cp jenkins/sonar-reactor.xml app/sonar-reactor.xml'
+                            dir('app') {
+                                sh '''
+                                    set +x
+                                    MAVEN_OPTS="-Xmx640m -XX:ActiveProcessorCount=2" \
+                                    ./backend/mvnw -B -f sonar-reactor.xml \
+                                        org.sonarsource.scanner.maven:sonar-maven-plugin:5.5.0.6356:sonar \
+                                        -Dsonar.projectKey="$SONAR_PROJECT" \
+                                        -Dsonar.coverage.jacoco.xmlReportPaths="$PWD/backend/target/site/jacoco/jacoco.xml" \
+                                        -Dsonar.scm.revision="$(git rev-parse HEAD)" \
+                                        -Dsonar.scanner.skipJreProvisioning=true
+                                '''
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        stage('Quality gate') {
+            steps {
+                timeout(time: 12, unit: 'MINUTES') {
+                    script {
+                        def gate = waitForQualityGate(webhookSecretId: 'sonar-webhook')
+                        echo "SonarQube quality gate: ${gate.status}"
+                        if (gate.status != 'OK') {
+                            error("Quality gate blocked deployment: ${gate.status}")
+                        }
+                        if (params.FAIL_GATE_DEMO) {
+                            error('The rejection demonstration unexpectedly passed its gate.')
+                        }
+                    }
+                }
+            }
+        }
+        stage('Build and deploy with Compose') {
+            steps {
+                withCredentials([
+                    string(credentialsId: 'deploy-db', variable: 'DEPLOY_DB_PASSWORD'),
+                    string(credentialsId: 'deploy-jwt', variable: 'DEPLOY_JWT_SECRET'),
+                    string(credentialsId: 'deploy-demo', variable: 'DEPLOY_DEMO_PASSWORD')
+                ]) {
+                    sh '''
+                        set +x
+                        docker compose --env-file versions.env -f compose/compose.yaml up -d --build --wait --wait-timeout 180
+                        mkdir -p artifacts
+                        DEPLOY_URL=http://web:8080 node scripts/smoke.mjs workflow artifacts/smoke.json
+                        . ./versions.env
+                        {
+                            printf 'build=%s\napp_commit=%s\ndeployment_commit=%s\n' "$BUILD_NUMBER" "$APP_COMMIT" "$(git rev-parse HEAD)"
+                            docker image inspect --format 'image={{index .RepoTags 0}} id={{.Id}}' "worksphere-api:$APP_COMMIT" "worksphere-web:$APP_COMMIT"
+                        } > artifacts/deployment.txt
+                        docker compose --env-file versions.env -f compose/compose.yaml ps
+                    '''
+                }
+            }
+        }
+    }
+    post {
+        always {
+            junit testResults: 'app/backend/target/surefire-reports/TEST-*.xml', allowEmptyResults: true
+            archiveArtifacts artifacts: 'artifacts/**,app/backend/target/site/jacoco/jacoco.xml,app/**/report-task.txt',
+                allowEmptyArchive: true
+        }
+    }
+}
