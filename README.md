@@ -1,8 +1,10 @@
 # WorkSphere Deployment - Triển khai phần mềm
 
-Đóng gói và triển khai [worksphere-app](https://github.com/Khiemnh158/worksphere-app) theo đúng commit, không copy backend vào repo này.
+Kho này chứa Jenkinsfile, Docker Compose, cấu hình giám sát và các script vận hành của môn Triển khai phần mềm. Bản demo lấy mã WorkSphere theo commit ghi trong `versions.env`. [Mã nguồn ứng dụng đã nghiệm thu](https://github.com/Khiemnh158/worksphere-app/tree/4273f1ed907eb49ae0023ab1cacff7c25de8a691)
 
 Docker Compose chạy WorkSphere trên cổng 18210. Jenkins local, SonarQube, Prometheus và Grafana có cấu hình riêng trong repo này. Đọc [hướng dẫn chạy và bàn giao](runbooks/LOCAL.md), [kết quả thực tế](STATUS.md) và [checklist](TODO.md).
+
+Bộ bàn giao của môn nằm trên nhánh `docs/deployment-plan-20261105`. Dùng lệnh clone trong hướng dẫn để lấy đúng bản. [PR bàn giao](https://github.com/Khiemnh158/worksphere-deployment/pull/1)
 
 Docker/kiểm thử JDK 21 → Compose → Jenkins/Sonar → giám sát → nghiệm thu. [Kế hoạch](docs/PIPELINE_PLAN.md) ghi tiêu chí qua từng chặng. SSH public là bonus sau local.
 
@@ -15,10 +17,12 @@ Docker/kiểm thử JDK 21 → Compose → Jenkins/Sonar → giám sát → nghi
 - SSH deploy lên server public/URL hoạt động là bonus +1 sau khi local đạt.
 
 ## Tài liệu
+- [Hướng dẫn từ clone đến demo và kiểm thử](runbooks/LOCAL.md)
+- [Báo cáo WorkSphere bản PDF](reports/WorkSphere-Tien-do-2026-11-11.pdf) và [mẫu Word để chỉnh sửa](reports/WorkSphere-Tien-do-2026-11-11.docx)
 - [Phạm vi và ma trận tiêu chí](docs/COURSE_SCOPE.md)
 - [Kế hoạch P0–P6, pipeline và mô hình local](docs/PIPELINE_PLAN.md)
 - [Việc phải làm](TODO.md), [trạng thái](STATUS.md), [minh chứng nghiệm thu](evidence/README.md)
-- [Báo cáo tiến độ ngày 11/11/2026](reports/README.md)
+- [Nội dung báo cáo và thông tin nộp lớp](reports/README.md)
 - [Version pin](versions.env), [target app](target.json)
 
 Pin triển khai đọc từ `versions.env`. Tag `coursework-mvp-2026-11-02` ghi nhận mốc môn Lập trình nâng cao. Kết quả CI, Compose và giám sát của môn này được ghi riêng trong [STATUS](STATUS.md). [Nghiệm thu app MVP](https://github.com/Khiemnh158/worksphere-app/blob/coursework-mvp-2026-11-02/reports/COURSEWORK_ACCEPTANCE_2026-11-02.md).
