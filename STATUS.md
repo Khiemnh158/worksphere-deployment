@@ -1,5 +1,10 @@
 # Hiện trạng
 
+## Chuẩn bị trình bày ngày 11/11/2026
+
+- [Báo cáo tiến độ](reports/README.md) tổng hợp kết quả nghiệm thu ngày 09/11, kịch bản demo và câu hỏi cho giảng viên. Đây là cập nhật tài liệu dựa trên các lượt chạy đã lưu.
+- [TODO](TODO.md) ghi các việc còn lại trước khi trình bày và nộp bản cuối. SSH lên máy chủ công khai vẫn chờ điều kiện thực hiện phần cộng điểm.
+
 ## Kết quả nghiệm thu local ngày 09/11/2026
 
 - Docker Desktop đã khởi động lại. Chạy Jenkins và SonarQube theo từng chặng để kiểm soát bộ nhớ.
@@ -9,7 +14,7 @@
 - Backup/restore và thử chuyển qua lại hai image trên DB khôi phục cổng 18211 đều đạt smoke. Hai image dùng cùng schema.
 - [Minh chứng và SHA](evidence/LOCAL_2026-11-09.md). SSH public là phần cộng điểm chờ máy chủ.
 
-## Triển khai ngày 09/11/2026
+## Các lượt chạy trước khi hoàn tất nghiệm thu ngày 09/11/2026
 
 - P0: JDK 21 build đạt, 407 backend tests đạt, 0 fail/error/skip. Nhóm PostgreSQL chạy trên DB thử riêng, bao gồm ca QR đã sửa đồng hồ. Web 8/8 đạt.
 - P1: image preview API/web và Compose chạy với PostgreSQL riêng. Smoke qua Nginx đã xác nhận login/logout, chặn sai quyền, gửi yêu cầu kèm tệp, phân công, xử lý, đóng và tải lại tệp sau khi tái tạo API.

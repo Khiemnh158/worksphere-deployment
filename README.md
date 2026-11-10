@@ -17,7 +17,8 @@ Docker/kiểm thử JDK 21 → Compose → Jenkins/Sonar → giám sát → nghi
 ## Tài liệu
 - [Phạm vi và ma trận tiêu chí](docs/COURSE_SCOPE.md)
 - [Kế hoạch P0–P6, pipeline và mô hình local](docs/PIPELINE_PLAN.md)
-- [Việc phải làm](TODO.md), [trạng thái](STATUS.md), [quyển ảnh cần thu](evidence/README.md)
+- [Việc phải làm](TODO.md), [trạng thái](STATUS.md), [minh chứng nghiệm thu](evidence/README.md)
+- [Báo cáo tiến độ ngày 11/11/2026](reports/README.md)
 - [Version pin](versions.env), [target app](target.json)
 
 Pin triển khai đọc từ `versions.env`. Tag `coursework-mvp-2026-11-02` ghi nhận mốc môn Lập trình nâng cao. Kết quả CI, Compose và giám sát của môn này được ghi riêng trong [STATUS](STATUS.md). [Nghiệm thu app MVP](https://github.com/Khiemnh158/worksphere-app/blob/coursework-mvp-2026-11-02/reports/COURSEWORK_ACCEPTANCE_2026-11-02.md).
