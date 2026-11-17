@@ -7,4 +7,6 @@ Bản chi tiết bổ sung mô hình Docker Desktop, cấu hình Jenkins và Son
 - [Bản PDF để xem và trình bày](WorkSphere-Tien-do-2026-11-11.pdf)
 - [Bản Word để chỉnh sửa](WorkSphere-Tien-do-2026-11-11.docx)
 
-Bản trên GitHub dùng nhãn thành viên để chia sẻ công khai. Nhóm điền thông tin sinh viên, phân công và điểm tự đánh giá trên bản nộp lớp. Xem [minh chứng nghiệm thu](../evidence/LOCAL_2026-11-09.md), [hướng dẫn chạy](../runbooks/LOCAL.md) và [việc còn lại](../TODO.md).
+Bản cập nhật tháng 11/2026 bổ sung phần mở đầu và kết luận nghiệm thu. Báo cáo ghi năm thành viên và giảng viên hướng dẫn theo bản nhóm đã rà soát. Cột mã sinh viên để trống trong bản công khai. Bảng phân công và điểm tự đánh giá do nhóm xác nhận trên bản nộp lớp.
+
+Xem [minh chứng nghiệm thu](../evidence/LOCAL_2026-11-09.md), [hướng dẫn chạy](../runbooks/LOCAL.md) và [việc còn lại](../TODO.md).
