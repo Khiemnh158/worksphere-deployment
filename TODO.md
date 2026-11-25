@@ -1,5 +1,13 @@
 # Việc phải làm môn Triển khai phần mềm
 
+Cập nhật 25/11/2026. Bổ sung bước kiểm tra image ID của container API/web trước
+khi chạy smoke, tự tái tạo hai container khi image chưa khớp. Sáu plugin có
+cảnh báo đã được ghim bản vá và xác nhận đang active trên Jenkins local.
+Bản ứng dụng mới sửa giao dịch tệp, nhắc hạn và cấu hình web non-root.
+Jenkins #10 đã SUCCESS với 411 test backend và 8 test web. Quality gate OK,
+coverage phần code mới 86,1% và không có issue mới. Đối chiếu image, luồng hỗ trợ,
+tệp cũ/mới và giám sát sau triển khai đều đạt. Xem evidence/LOCAL_2026-11-25.md.
+
 Cập nhật ngày 10/11/2026. Bản triển khai local đã được nghiệm thu ngày 09/11/2026. Xem [minh chứng](evidence/LOCAL_2026-11-09.md), [báo cáo tiến độ](reports/WorkSphere-Tien-do-2026-11-11.pdf) và [hướng dẫn chạy](runbooks/LOCAL.md).
 
 ## Đã hoàn thành
