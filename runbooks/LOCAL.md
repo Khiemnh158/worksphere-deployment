@@ -40,6 +40,7 @@ $app = @('compose','--env-file','versions.env','--env-file','.env.local','-f','c
 docker @app config --quiet
 docker @app up -d --build --wait --wait-timeout 180
 docker @app ps
+node --env-file=.env.local scripts/verify-deployed-images.mjs --repair
 New-Item -ItemType Directory -Path artifacts -Force | Out-Null
 node --env-file=.env.local scripts/smoke.mjs workflow artifacts/smoke.json
 ```
@@ -103,6 +104,14 @@ Bộ sao lưu có dump PostgreSQL, tar.gz uploads và manifest image ID. Script 
 Quay lui trên bản restore trước. Chọn tag API/web cũ đã lưu và đối chiếu schema Flyway. Đặt `APP_COMMIT` theo tag và `DEPLOY_WEB_PORT=18211`. Chạy `docker @app -p worksphere-restore-demo up -d --no-build --pull never --wait` rồi smoke verify. Bỏ `APP_COMMIT` để trở về pin hiện tại. Nếu schema không tương thích, phục hồi backup đúng phiên bản vào project mới.
 
 ## Xử lý sự cố
+
+Pipeline kiểm tra image ID thực tế của API và web với tag của commit đang ghim.
+Nếu chưa khớp, bước kiểm tra tái tạo hai container rồi đối chiếu lại trước smoke.
+Kết quả nằm trong artifact runtime-images.json của build.
+
+Bản cập nhật plugin 25/11 ghim thêm sáu dependency trong plugins.txt. Trên máy
+đã cài, dựng lại image Jenkins rồi dùng Compose up để nhận các bản vá. Thư mục
+jenkins-home giữ các job và lịch sử build. Kiểm tra các plugin active sau khi Jenkins lên.
 
 | Hiện tượng | Kiểm tra |
 | --- | --- |

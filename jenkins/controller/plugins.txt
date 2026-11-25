@@ -5,3 +5,9 @@ sonar:2.19.0
 junit:1458.v38661c0638e2
 credentials-binding:728.v902a_273b_8947
 pipeline-stage-view:2.41
+pipeline-groovy-lib:822.vc95f70dea_db_7
+jakarta-mail-api:2.1.5-1
+workflow-cps:4403.v471713a_cea_19
+workflow-multibranch:842.v3a_b_59b_57b_e6e
+pipeline-build-step:605.v00486e8f4b_3e
+git-client:6.7.1

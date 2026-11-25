@@ -102,6 +102,7 @@ pipeline {
                     sh '''
                         set +x
                         docker compose --env-file versions.env -f compose/compose.yaml up -d --build --wait --wait-timeout 180
+                        node scripts/verify-deployed-images.mjs --repair
                         mkdir -p artifacts
                         DEPLOY_URL=http://web:8080 node scripts/smoke.mjs workflow artifacts/smoke.json
                         . ./versions.env
