@@ -6,7 +6,7 @@ Jenkins #10 đã SUCCESS với 411 test backend, 8 test web và quality gate OK.
 
 Docker Compose chạy WorkSphere trên cổng 18210. Jenkins local, SonarQube, Prometheus và Grafana có cấu hình riêng trong repo này. Đọc [hướng dẫn chạy và bàn giao](runbooks/LOCAL.md), [kết quả thực tế](STATUS.md) và [checklist](TODO.md).
 
-Bộ bàn giao của môn nằm trên nhánh `docs/deployment-plan-20261105`. Dùng lệnh clone trong hướng dẫn để lấy đúng bản. [PR bàn giao](https://github.com/Khiemnh158/worksphere-deployment/pull/1)
+Bộ bàn giao của môn nằm trên nhánh `main`, gồm cấu hình triển khai, báo cáo Word/PDF và hướng dẫn chạy. Clone nhánh `main` theo [hướng dẫn bàn giao](runbooks/LOCAL.md). Mã ứng dụng được tải riêng theo commit đã ghim trong `versions.env` để tái hiện đúng bản đã kiểm thử.
 
 Docker/kiểm thử JDK 21 → Compose → Jenkins/Sonar → giám sát → nghiệm thu. [Kế hoạch](docs/PIPELINE_PLAN.md) ghi tiêu chí qua từng chặng. SSH public là bonus sau local.
 

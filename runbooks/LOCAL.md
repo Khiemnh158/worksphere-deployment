@@ -7,7 +7,7 @@ Dùng Git, Node.js 24 và Docker Desktop với Linux engine. Kiểm tra `docker 
 Mở Docker Desktop trước rồi chạy khối lệnh sau một lần từ thư mục cha nơi muốn lưu dự án.
 
 ```powershell
-git clone --branch docs/deployment-plan-20261105 https://github.com/Khiemnh158/worksphere-deployment.git
+git clone --branch main https://github.com/Khiemnh158/worksphere-deployment.git
 Set-Location worksphere-deployment
 $branch = git branch --show-current
 $pin = (Select-String '^APP_COMMIT=' versions.env).Line.Split('=',2)[1]
