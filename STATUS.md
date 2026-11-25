@@ -1,5 +1,19 @@
 # Hiện trạng
 
+## Bản vá và nghiệm thu ngày 25/11/2026
+
+- Jenkins #10 SUCCESS tại app commit `2ae3b83`, deployment commit `9f28cb8`.
+- 411 test backend và 8 test web đạt. Không có test lỗi hoặc bỏ qua.
+- SonarQube gate OK, coverage phần code mới 86,1%, issue mới 0. Gate giữ các ngưỡng đang có.
+- API và web chạy đúng image ID được lưu trong artifact runtime-images.json. Web chạy bằng user nginx.
+- Luồng hỗ trợ kèm tệp, chặn sai quyền và thu hồi phiên đạt. Kiểm lại tệp từ build #7 sau triển khai vẫn đạt.
+- Prometheus và Grafana đọc được API UP cùng số liệu request, lỗi HTTP và JVM sau triển khai.
+- Sáu plugin Jenkins được ghim bản vá và đang active. Đối chiếu update center đã lưu không còn advisory plugin khớp phiên bản đang cài.
+- Build #8 bị chặn do coverage phần mới 75%. Build #9 bị chặn do ba cảnh báo trong file test. Build #10 đã đạt cả hai điều kiện.
+- Sonar vẫn còn 9 cảnh báo security và 44 reliability trên toàn bộ mã. Log test còn cảnh báo đóng fork Surefire dù 411 test đạt. Các mục này tiếp tục được ghi nhận.
+
+[Minh chứng và phiên bản](evidence/LOCAL_2026-11-25.md).
+
 ## Chuẩn bị trình bày ngày 11/11/2026
 
 - [Báo cáo tiến độ](reports/README.md) tổng hợp kết quả nghiệm thu ngày 09/11, kịch bản demo và câu hỏi cho giảng viên. Đây là cập nhật tài liệu dựa trên các lượt chạy đã lưu.

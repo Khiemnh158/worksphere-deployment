@@ -1,6 +1,8 @@
 # WorkSphere Deployment - Triển khai phần mềm
 
-Kho này chứa Jenkinsfile, Docker Compose, cấu hình giám sát và các script vận hành của môn Triển khai phần mềm. Bản demo lấy mã WorkSphere theo commit ghi trong `versions.env`. [Mã nguồn ứng dụng đã nghiệm thu](https://github.com/Khiemnh158/worksphere-app/tree/4273f1ed907eb49ae0023ab1cacff7c25de8a691)
+Kho này chứa Jenkinsfile, Docker Compose, cấu hình giám sát và các script vận hành của môn Triển khai phần mềm. Bản demo lấy mã WorkSphere theo commit ghi trong `versions.env`. [Mã nguồn ứng dụng đã kiểm tra ngày 25/11/2026](https://github.com/Khiemnh158/worksphere-app/tree/2ae3b83e07ac88ebe7b88e3b6c422fb8492ce290)
+
+Jenkins #10 đã SUCCESS với 411 test backend, 8 test web và quality gate OK. [Kết quả ngày 25/11/2026](evidence/LOCAL_2026-11-25.md) ghi các bản vá, image đang chạy và cảnh báo còn lại.
 
 Docker Compose chạy WorkSphere trên cổng 18210. Jenkins local, SonarQube, Prometheus và Grafana có cấu hình riêng trong repo này. Đọc [hướng dẫn chạy và bàn giao](runbooks/LOCAL.md), [kết quả thực tế](STATUS.md) và [checklist](TODO.md).
 
