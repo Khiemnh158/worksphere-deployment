@@ -2,6 +2,8 @@
 
 ## Bản vá và nghiệm thu ngày 25/11/2026
 
+- Báo cáo Word/PDF đã cập nhật kết quả #10, app `2ae3b83`, bước đối chiếu image và 10 ảnh chụp ngày 25/11. Giữ nguyên giảng viên, năm thành viên và các ô trống; mục lục và viền bìa đã kiểm tra qua bản render.
+
 - Jenkins #10 SUCCESS tại app commit `2ae3b83`, deployment commit `9f28cb8`.
 - 411 test backend và 8 test web đạt. Không có test lỗi hoặc bỏ qua.
 - SonarQube gate OK, coverage phần code mới 86,1%, issue mới 0. Gate giữ các ngưỡng đang có.

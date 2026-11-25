@@ -21,6 +21,7 @@ Cập nhật ngày 10/11/2026. Bản triển khai local đã được nghiệm t
 - [x] Chuẩn bị báo cáo theo mẫu cho buổi trình bày ngày 11/11/2026, gồm kết quả, kịch bản demo, câu hỏi cho giảng viên và phụ lục minh chứng.
 - [x] Bổ sung sơ đồ kiến trúc Docker và luồng CI/CD theo góp ý. Bật lại các dịch vụ, chạy lại smoke và chụp sáu ảnh minh chứng ngày 10/11.
 - [x] Hoàn thiện bản báo cáo chi tiết với cấu hình từng thành phần, cách đọc kết quả và các bước phục hồi đã kiểm chứng.
+- [x] Cập nhật báo cáo Word/PDF ngày 25/11 theo Jenkins #10, 411 test backend, 8 test web, image ID và cảnh báo Sonar còn lại; thay ảnh minh chứng mới, cập nhật mục lục và viền đôi trang bìa. Giữ nguyên thông tin nhóm và các ô trống theo yêu cầu.
 
 ## Trước và sau buổi trình bày
 
