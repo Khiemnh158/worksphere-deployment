@@ -1,14 +1,20 @@
 {
   "application_repository": "https://github.com/Khiemnh158/worksphere-app",
-  "application_commit": "2ae3b83e07ac88ebe7b88e3b6c422fb8492ce290",
+  "application_commit": "fb45038a159f879b291f975a0ec86eda4d0e2889",
   "upstream_commit": "8292d13b5330279c6a3d4ab007eebbff9be4d894",
   "baseline_tag": "coursework-mvp-2026-11-02",
   "baseline_commit": "8f342548fbdab566e4e930ae2df6365480fd1c90",
-  "status": "local-ci-deploy-and-smoke-verified-2026-11-25",
+  "status": "source-updated-awaiting-linux-ci-2026-11-26",
   "image_digest": null,
-  "image_status": "LOCAL_BUILT_AND_SMOKE_VERIFIED",
-  "local_image_ids": {
-    "api": "sha256:2d3a054d31e604ea526e810cd92743cab5f49a94dba12767fb1115d34b5c0f24",
-    "web": "sha256:938faa8cabbfe4657b58fe2b8ca591395bb8d7171e087ff59a727a3222c6a0ca"
+  "image_status": "NOT_BUILT_FOR_PINNED_COMMIT",
+  "local_image_ids": null,
+  "last_verified_release": {
+    "application_commit": "2ae3b83e07ac88ebe7b88e3b6c422fb8492ce290",
+    "jenkins_build": 10,
+    "evidence": "evidence/LOCAL_2026-11-25.md",
+    "local_image_ids": {
+      "api": "sha256:2d3a054d31e604ea526e810cd92743cab5f49a94dba12767fb1115d34b5c0f24",
+      "web": "sha256:938faa8cabbfe4657b58fe2b8ca591395bb8d7171e087ff59a727a3222c6a0ca"
+    }
   }
 }

@@ -40,6 +40,7 @@ pipeline {
                 sh '''
                     set -eu
                     (cd app && node --experimental-vm-modules --test scripts/test-web-session.mjs scripts/test-web-punch-history.mjs)
+                    node --test scripts/verify-openapi.test.mjs
                     bash scripts/ci-test-backend.sh
                 '''
             }
@@ -105,6 +106,7 @@ pipeline {
                         node scripts/verify-deployed-images.mjs --repair
                         mkdir -p artifacts
                         DEPLOY_URL=http://web:8080 node scripts/smoke.mjs workflow artifacts/smoke.json
+                        DEPLOY_URL=http://web:8080 node scripts/verify-openapi.mjs artifacts/openapi.json
                         . ./versions.env
                         {
                             printf 'build=%s\napp_commit=%s\ndeployment_commit=%s\n' "$BUILD_NUMBER" "$APP_COMMIT" "$(git rev-parse HEAD)"

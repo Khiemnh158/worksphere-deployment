@@ -1,5 +1,15 @@
 # Việc phải làm môn Triển khai phần mềm
 
+## Bản cập nhật source ngày 26/11/2026
+
+- [x] Ghim cùng commit app `fb45038` trong versions.env và target.json.
+- [x] Thêm script kiểm tra Swagger/OpenAPI/JWT; 3 test script đạt, kiểm tra HTTP local và proxy Nginx Windows đạt.
+- [x] Thêm kiểm tra OpenAPI vào Jenkins và hướng dẫn mở Swagger qua web Docker.
+- [ ] Bật Docker, checkout đúng pin, chạy lại Jenkins và xác nhận quality gate mới.
+- [ ] Build lại image, kiểm tra Swagger qua cổng 18210 và lưu image ID/bằng chứng cho pin mới.
+
+Các kết quả #10 dưới đây thuộc pin `2ae3b83` ngày 25/11, không phải lần chạy CI cho bản sửa Swagger.
+
 Cập nhật 25/11/2026. Bổ sung bước kiểm tra image ID của container API/web trước
 khi chạy smoke, tự tái tạo hai container khi image chưa khớp. Sáu plugin có
 cảnh báo đã được ghim bản vá và xác nhận đang active trên Jenkins local.

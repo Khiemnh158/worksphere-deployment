@@ -24,12 +24,34 @@ node scripts/configure-ci.mjs prepare $branch
 | Trang local | URL | Tài khoản và nơi lấy mật khẩu |
 | --- | --- | --- |
 | WorkSphere Docker | http://127.0.0.1:18210/ | `minh.kd`, `hung.it`, `hai.it` hoặc `admin.web`. Dùng `DEPLOY_DEMO_PASSWORD` trong `.env.local`. |
+| Swagger của bản mới | http://127.0.0.1:18210/swagger-ui/index.html | Sau khi checkout pin mới và build lại image; các API nghiệp vụ cần JWT qua Authorize. |
 | Jenkins | http://127.0.0.1:18081/job/WorkSphere-Deployment/ | `coursework`, dùng `JENKINS_LOCAL_PASSWORD` trong `.env.ci`. |
 | SonarQube | http://127.0.0.1:19000/ | `admin`, dùng `SONAR_ADMIN_PASSWORD` sau bước cấu hình SonarQube. |
 | Prometheus | http://127.0.0.1:19090/targets | Mở trực tiếp trên máy. |
 | Grafana | http://127.0.0.1:13000/ | `admin`, dùng `GRAFANA_ADMIN_PASSWORD` trong `.env.ci`. |
 
 Thư mục `app/` chứa checkout ứng dụng theo commit đã ghim. Thư mục `artifacts/` lưu kết quả kiểm thử và sao lưu của từng máy. Git bỏ qua hai thư mục này và các file môi trường local.
+
+## Cập nhật bản đã clone để nhận sửa Swagger ngày 26/11
+
+Lưu thay đổi riêng trước khi cập nhật; nếu checkout có thay đổi chưa commit thì
+không reset hoặc ghi đè. Tại gốc repo triển khai:
+
+```powershell
+git pull --ff-only origin main
+$pin = (Select-String '^APP_COMMIT=' versions.env).Line.Split('=',2)[1]
+git -C app fetch origin
+git -C app checkout --detach $pin
+docker compose --env-file versions.env --env-file .env.local -f compose/compose.yaml up -d --build --wait
+New-Item -ItemType Directory -Force artifacts | Out-Null
+$env:DEPLOY_URL = 'http://127.0.0.1:18210'
+node scripts/verify-openapi.mjs artifacts/openapi.json
+```
+
+Lệnh này dùng lại cấu hình/volume của bản cài; không xóa database hoặc đổi mật khẩu.
+Kết quả kiểm tra mong đợi: Swagger UI/config/schema HTTP 200, JWT đúng hợp đồng,
+API công việc khi chưa đăng nhập HTTP 401. Kiểm tra này không tạo công việc hoặc
+lượt chấm công. Muốn nghiệm thu toàn pipeline, chạy Jenkins theo các bước bên dưới.
 
 ## Docker Compose
 

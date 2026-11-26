@@ -1,5 +1,19 @@
 # Hiện trạng
 
+## Bàn giao source ngày 26/11/2026
+
+- `versions.env` và `target.json` cùng ghim app `fb45038`, có bản sửa Swagger,
+  kiểm tra đăng nhập, Gradle Sync Windows và tuyến tài liệu qua Nginx.
+- Jenkins được bổ sung ba test cho script kiểm tra OpenAPI và bước xác nhận UI,
+  config/schema trả 200, JWT đúng hợp đồng, API nghiệp vụ chưa đăng nhập trả 401.
+- Script kiểm tra đạt 3 test; HTTP đạt 4 kiểm tra với API local và 4 kiểm tra qua
+  Nginx Windows thử riêng. Không thay cấu hình hoặc dữ liệu đang dùng để demo.
+- Docker engine đang tắt: chưa build image hoặc chạy quality gate cho pin mới.
+  Metadata image của Jenkins #10 được giữ dưới `last_verified_release`, không
+  dùng làm image ID của pin hiện tại.
+
+[Chi tiết bản cập nhật](evidence/UPDATE_2026-11-26.md).
+
 ## Bản vá và nghiệm thu ngày 25/11/2026
 
 - Báo cáo Word/PDF đã cập nhật kết quả #10, app `2ae3b83`, bước đối chiếu image và 10 ảnh chụp ngày 25/11. Giữ nguyên giảng viên, năm thành viên và các ô trống; mục lục và viền bìa đã kiểm tra qua bản render.
